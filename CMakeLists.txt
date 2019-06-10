@@ -8,3 +8,6 @@ include_directories(include)
 add_subdirectory(Chapter3)
 add_subdirectory(lib)
 add_subdirectory(intro)
+
+target_link_libraries(daytimetcpcli unp)
+target_link_libraries(daytimetcpsrv1 unp)
