@@ -10,6 +10,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <arpa/inet.h>
+#include <sys/wait.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/socket.h>
