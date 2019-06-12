@@ -19,12 +19,13 @@ void str_echo(int sockfd) {
     }
 }
 
-void sig_chld(int signo){
+void *sig_chld(int signo) {
     pid_t pid;
     int stat;
 
     pid = wait(&stat);
-    printf("child %d terminated\n",pid);
+    printf("child %d terminated\n", pid);
+    return NULL;
 }
 
 int main(int argc, char **argv) {
