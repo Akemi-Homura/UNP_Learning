@@ -9,5 +9,9 @@ add_library(unp
         err.c
         readline_fast.c
         sockfd_to_family.c
-        signal.c)
+        signal.c
+        fork.c
+        fgets.c
+        fputs.c
+        inet_pton.c)
 add_library(readline readline.c)
