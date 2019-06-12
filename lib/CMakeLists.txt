@@ -8,5 +8,6 @@ add_library(unp
         wrapsock.c
         err.c
         readline_fast.c
-        sockfd_to_family.c)
+        sockfd_to_family.c
+        signal.c)
 add_library(readline readline.c)

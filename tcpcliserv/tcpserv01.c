@@ -16,16 +16,17 @@ void str_echo(int sockfd) {
         } else if (n < 0) {
             err_sys("str_echo: read error");
         }
+        break;
     }
 }
 
-void *sig_chld(int signo) {
+void sig_chld(int signo) {
+    printf("recv signal %d\n", signo);
     pid_t pid;
     int stat;
 
     pid = wait(&stat);
     printf("child %d terminated\n", pid);
-    return NULL;
 }
 
 int main(int argc, char **argv) {
@@ -38,9 +39,16 @@ int main(int argc, char **argv) {
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERV_PORT);
+
     Bind(listenfd, (SA *) &servaddr, sizeof(servaddr));
     Listen(listenfd, LISTENQ);
+
     Signal(SIGCHLD, sig_chld);
+
+    if (Fork() == 0) {
+        return 0;
+    }
+
     while (1) {
         clilen = sizeof(cliaddr);
         connfd = Accept(listenfd, (SA *) &cliaddr, &clilen);
