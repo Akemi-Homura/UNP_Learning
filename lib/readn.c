@@ -8,7 +8,7 @@
 /**
  * read "n" bytes from a descriptor.
  */
-ssize_t readn(int fd, void *vptr, size_t n) {
+ssize_t Readn(int fd, void *vptr, size_t n) {
     size_t nleft;
     ssize_t nread;
     char *ptr;

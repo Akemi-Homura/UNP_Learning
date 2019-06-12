@@ -5,9 +5,8 @@ set(CMAKE_C_STANDARD 99)
 
 include_directories(include)
 
-add_subdirectory(Chapter3)
 add_subdirectory(lib)
-add_subdirectory(intro)
 
-target_link_libraries(daytimetcpcli unp)
-target_link_libraries(daytimetcpsrv1 unp)
+add_subdirectory(Chapter3)
+add_subdirectory(intro)
+add_subdirectory(tcpcliserv)

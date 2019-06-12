@@ -7,6 +7,7 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+#include <signal.h>
 #include <errno.h>
 #include <arpa/inet.h>
 #include <stdlib.h>
@@ -23,8 +24,12 @@
 #define MAXLINE 4096           /* max text line length */
 #define BUFFSIZE 8192          /* buffer size for reads and writes */
 
+#define SERV_PORT 9877
+
 /* Following shortens all the typecasts of pointer arguments */
 #define SA struct sockaddr
+
+typedef void SigFunc(int);
 
 /* sock_ functions */
 char *sock_ntop(const struct sockaddr* sockaddr, socklen_t addrlen);
@@ -38,9 +43,19 @@ ssize_t Write(int fildes, void *buf, size_t nbyte);
 int Accept(int socket, struct sockaddr*restrict address, socklen_t *restrict address_len);
 int Close(int fieldes);
 int Connect(int socket, const struct sockaddr* address, socklen_t address_len);
+int Inet_pton(int af, const char * restrict src, void * restrict dst);
+
+/* wrap functions */
+pid_t Fork();
+char *Fgets(char * restrict str, int size, FILE * restrict stream);
+int Fputs(const char *restrict s, FILE *restrict stream);
+SigFunc *Signal(int ,SigFunc*);
 
 
-ssize_t readn(int fd, void *vptr, size_t n);
-ssize_t writen(int fd, const void* vptr, size_t n);
-ssize_t readline(int fd, void* vptr, size_t maxlen);
+/* 返回套接字的地址族 */
+int sockfd_to_family(int sockfd);
+
+ssize_t Readn(int fd, void *vptr, size_t n);
+ssize_t Writen(int fd, const void *vptr, size_t n);
+ssize_t Readline(int fd, void *vptr, size_t maxlen);
 #endif //UNP_LEARNING_UNP_H

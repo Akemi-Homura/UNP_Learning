@@ -27,7 +27,7 @@ static ssize_t my_read(int fd, char *ptr) {
     return 1;
 }
 
-ssize_t readline(int fd, void *vptr, size_t maxlen) {
+ssize_t Readline(int fd, void *vptr, size_t maxlen) {
     ssize_t n, rc;
     char c, *ptr;
 
