@@ -4,24 +4,9 @@
 
 #include "unp.h"
 
-void str_echo(int sockfd) {
-    ssize_t n;
-    char buf[MAXLINE];
-    while (1) {
-        while ((n = read(sockfd, buf, MAXLINE)) > 0) {
-            Writen(sockfd, buf, n);
-        }
-        if (n < 0 && errno == EINTR) {
-            continue;
-        } else if (n < 0) {
-            err_sys("str_echo: read error");
-        }
-        break;
-    }
-}
+extern void str_echo(int sockfd);
 
 void sig_chld(int signo) {
-    printf("recv signal %d\n", signo);
     pid_t pid;
     int stat;
 
@@ -44,10 +29,6 @@ int main(int argc, char **argv) {
     Listen(listenfd, LISTENQ);
 
     Signal(SIGCHLD, sig_chld);
-
-    if (Fork() == 0) {
-        return 0;
-    }
 
     while (1) {
         clilen = sizeof(cliaddr);
