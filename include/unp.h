@@ -59,4 +59,7 @@ int sockfd_to_family(int sockfd);
 ssize_t Readn(int fd, void *vptr, size_t n);
 ssize_t Writen(int fd, const void *vptr, size_t n);
 ssize_t Readline(int fd, void *vptr, size_t maxlen);
+
+/* log */
+
 #endif //UNP_LEARNING_UNP_H

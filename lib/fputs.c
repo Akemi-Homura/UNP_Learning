@@ -9,5 +9,6 @@ int Fputs(const char *restrict s, FILE *restrict stream) {
     if ((v = fputs(s, stream)) == EOF) {
         err_sys("fputs error");
     }
+    fflush(stream);
     return v;
 }

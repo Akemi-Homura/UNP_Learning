@@ -7,7 +7,7 @@
 
 extern void sig_chld(int signo);
 
-extern str_echo(int);
+extern void str_echo(int);
 
 int main(int argc, char **argv) {
     int listenfd, connfd;
